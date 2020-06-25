@@ -19,7 +19,13 @@ stages{
       sh 'mvn clean package'
       }
      } 
-
+  stage ('Deploy To Tomcat Server') {
+    steps {
+      sshaget (['tomcat']) {
+          sh 'scp -o StrictHostkeyChecking=no target/*.war nehad@192.168.99.118:/opt/tomcat/apache-tomcat-8.5.56/weapps/webapp.war'
+       }
+      }
+     }
 
 
   }
